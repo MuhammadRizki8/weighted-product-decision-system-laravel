@@ -4,60 +4,59 @@ include_once("models/Kriteria.class.php");
 include_once("views/Kriteria.view.php");
 
 class KriteriaController {
-  private $kriteria;
+    private $kriteria;
 
-  function __construct(){
-    $this->kriteria = new Kriteria(Conf::$db_host, Conf::$db_user, Conf::$db_pass, Conf::$db_name);
-  }
-
-  public function index($id) {
-    $this->kriteria->open();
-    $this->kriteria->getKriteria();
-    $data = array(
-      'kriteria' => array(),
-      'selected' => array()
-    );
-    while($row = $this->kriteria->getResult()){
-      array_push($data['kriteria'], $row);
+    function __construct(){
+        $this->kriteria = new Kriteria(Conf::$db_host, Conf::$db_user, Conf::$db_pass, Conf::$db_name);
     }
 
-    if (!empty($id)) {
-      $this->kriteria->getKriteriaById($id);
+    public function index($id = null) {
+        $this->kriteria->open();
+        $this->kriteria->getKriteria();
+        $data = array(
+            'kriteria' => array(),
+            'selected' => array()
+        );
 
-      while ($row = $this->kriteria->getResult()) {
-          array_push($data['selected'], $row);
-      }
-  }
+        while($row = $this->kriteria->getResult()){
+            array_push($data['kriteria'], $row);
+        }
 
-    $this->kriteria->close();
+        if (!empty($id)) {
+            $this->kriteria->getKriteriaById($id);
+            while ($row = $this->kriteria->getResult()) {
+                array_push($data['selected'], $row);
+            }
+        }
 
-    $view = new KriteriaView();
-    $view->render($data, $id);
-  }
+        $this->kriteria->close();
 
-  function add($data){
-    $this->kriteria->open();
-    $this->kriteria->add($data);
-    $this->kriteria->close();
-    
-    header("location:kriteria.php");
-  }
+        $view = new KriteriaView();
+        $view->render($data, $id);
+    }
 
-  function edit($id, $data){
-    $this->kriteria->open();
-    $this->kriteria->update($id, $data);
-    $this->kriteria->close();
-    
-    header("location:kriteria.php");
-  }
+    function add($data){
+        $this->kriteria->open();
+        $this->kriteria->add($data);
+        $this->kriteria->close();
+        
+        header("location:kriteria.php");
+    }
 
-  function delete($id){
-    $this->kriteria->open();
-    $this->kriteria->delete($id);
-    $this->kriteria->close();
-    
-    header("location:kriteria.php");
-  }
+    function edit($id, $data){
+        $this->kriteria->open();
+        $this->kriteria->update($id, $data);
+        $this->kriteria->close();
+        
+        header("location:kriteria.php");
+    }
 
-
+    function delete($id){
+        $this->kriteria->open();
+        $this->kriteria->delete($id);
+        $this->kriteria->close();
+        
+        header("location:kriteria.php");
+    }
 }
+?>

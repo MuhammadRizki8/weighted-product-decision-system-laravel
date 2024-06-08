@@ -3,6 +3,13 @@
   class AlternatifView {
     public function render($data){
       $no = 1;
+      $headerAlternatif = "<tr>
+            <th>NO</th>
+            <th>Kode Alternatif</th>
+            <th>Nama Alternatif</th>
+            <th>Aksi</th>
+          </tr>";
+      $no = 1;
       $dataAlternatif = null;
       foreach($data['alternatif'] as $val){
         list($id, $kode_alternatif, $nama_alternatif) = $val;
@@ -19,6 +26,7 @@
 
       $tpl = new Template("templates/index.html");
       $tpl->replace("DATA_TABEL", $dataAlternatif);
+      $tpl->replace("DATA_HEADER", $headerAlternatif);
       $tpl->write(); 
     }
   }

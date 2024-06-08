@@ -1,136 +1,231 @@
--- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: spk_kurban
--- ------------------------------------------------------
--- Server version	10.4.24-MariaDB
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 08 Jun 2024 pada 16.17
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `alternatif`
+-- Database: `spk_kurban`
 --
 
-DROP TABLE IF EXISTS `alternatif`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `alternatif`
+--
+
 CREATE TABLE `alternatif` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `kode_alternatif` varchar(255) NOT NULL,
-  `nama_alternatif` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `nama_alternatif` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `alternatif`
+-- Dumping data untuk tabel `alternatif`
 --
 
-LOCK TABLES `alternatif` WRITE;
-/*!40000 ALTER TABLE `alternatif` DISABLE KEYS */;
-/*!40000 ALTER TABLE `alternatif` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `alternatif` (`id`, `kode_alternatif`, `nama_alternatif`) VALUES
+(1, 'A1', 'Hewan Kurban A'),
+(2, 'A2', 'Hewan Kurban B'),
+(3, 'A3', 'Hewan Kurban C');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `kriteria`
+-- Struktur dari tabel `kriteria`
 --
 
-DROP TABLE IF EXISTS `kriteria`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `kriteria` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `kode_kriteria` varchar(255) NOT NULL,
   `nama_kriteria` varchar(255) NOT NULL,
-  `bobot` int(11) NOT NULL,
-  `tipe` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `bobot` float NOT NULL,
+  `tipe` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kriteria`
+-- Dumping data untuk tabel `kriteria`
 --
 
-LOCK TABLES `kriteria` WRITE;
-/*!40000 ALTER TABLE `kriteria` DISABLE KEYS */;
-INSERT INTO `kriteria` VALUES (2,'','',0,'');
-/*!40000 ALTER TABLE `kriteria` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `kriteria` (`id`, `kode_kriteria`, `nama_kriteria`, `bobot`, `tipe`) VALUES
+(1, 'C1', 'Umur', 0.2, 'benefit'),
+(2, 'C2', 'Berat', 0.15, 'benefit'),
+(3, 'C3', 'Kesehatan', 0.25, 'benefit'),
+(4, 'C4', 'Harga', 0.1, 'cost'),
+(5, 'C5', 'Lingkungan', 0.15, 'benefit'),
+(6, 'C6', 'Perawatan Hewan Kurban', 0.1, 'benefit'),
+(7, 'C7', 'Metode Pembayaran', 0.05, 'benefit');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `opsi_kriteria`
+-- Struktur dari tabel `opsi_kriteria`
 --
 
-DROP TABLE IF EXISTS `opsi_kriteria`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `opsi_kriteria` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `opsi` varchar(255) NOT NULL,
   `nilai` int(11) NOT NULL,
-  `id_kriteria` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_kriteria` (`id_kriteria`),
-  CONSTRAINT `opsi_kriteria_ibfk_1` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_kriteria` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `opsi_kriteria`
+-- Dumping data untuk tabel `opsi_kriteria`
 --
 
-LOCK TABLES `opsi_kriteria` WRITE;
-/*!40000 ALTER TABLE `opsi_kriteria` DISABLE KEYS */;
-/*!40000 ALTER TABLE `opsi_kriteria` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `opsi_kriteria` (`id`, `opsi`, `nilai`, `id_kriteria`) VALUES
+(1, 'Muda', 3, 1),
+(2, 'Ideal', 5, 1),
+(3, 'Tua', 3, 1),
+(4, 'Kurang', 1, 2),
+(5, 'Ideal', 3, 2),
+(6, 'Lebih', 5, 2),
+(7, 'Sehat', 5, 3),
+(8, 'Sakit ringan', 3, 3),
+(9, 'Sesuai anggaran', 5, 4),
+(10, 'Sedikit melebihi anggaran', 3, 4),
+(11, 'Jauh melebihi anggaran', 1, 4),
+(12, 'Bersih', 5, 5),
+(13, 'Cukup bersih', 3, 5),
+(14, 'Kotor', 1, 5),
+(15, 'Rutin', 5, 6),
+(16, 'Cukup Rutin', 4, 6),
+(17, 'Jarang', 3, 6),
+(18, 'Tunai & Non-tunai', 5, 7),
+(19, 'Hanya Tunai / Non-tunai', 3, 7);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `penilaian`
+-- Struktur dari tabel `penilaian`
 --
 
-DROP TABLE IF EXISTS `penilaian`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `penilaian` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `id_alternatif` int(11) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
-  `id_opsi` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_alternatif` (`id_alternatif`),
-  KEY `id_kriteria` (`id_kriteria`),
-  KEY `id_opsi` (`id_opsi`),
-  CONSTRAINT `penilaian_ibfk_1` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id`),
-  CONSTRAINT `penilaian_ibfk_2` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id`),
-  CONSTRAINT `penilaian_ibfk_3` FOREIGN KEY (`id_opsi`) REFERENCES `opsi_kriteria` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id_opsi` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `penilaian`
+-- Dumping data untuk tabel `penilaian`
 --
 
-LOCK TABLES `penilaian` WRITE;
-/*!40000 ALTER TABLE `penilaian` DISABLE KEYS */;
-/*!40000 ALTER TABLE `penilaian` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `penilaian` (`id`, `id_alternatif`, `id_kriteria`, `id_opsi`) VALUES
+(1, 1, 1, 2),
+(2, 1, 2, 2),
+(3, 1, 3, 1),
+(4, 1, 4, 1),
+(5, 1, 5, 1),
+(6, 1, 6, 1),
+(7, 1, 7, 1),
+(8, 2, 1, 1),
+(9, 2, 2, 3),
+(10, 2, 3, 1),
+(11, 2, 4, 2),
+(12, 2, 5, 2),
+(13, 2, 6, 2),
+(14, 2, 7, 2),
+(15, 3, 1, 3),
+(16, 3, 2, 1),
+(17, 3, 3, 2),
+(18, 3, 4, 3),
+(19, 3, 5, 3),
+(20, 3, 6, 3),
+(21, 3, 7, 1);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `alternatif`
+--
+ALTER TABLE `alternatif`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `kriteria`
+--
+ALTER TABLE `kriteria`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `opsi_kriteria`
+--
+ALTER TABLE `opsi_kriteria`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_kriteria` (`id_kriteria`);
+
+--
+-- Indeks untuk tabel `penilaian`
+--
+ALTER TABLE `penilaian`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_alternatif` (`id_alternatif`),
+  ADD KEY `id_kriteria` (`id_kriteria`),
+  ADD KEY `id_opsi` (`id_opsi`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `alternatif`
+--
+ALTER TABLE `alternatif`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `kriteria`
+--
+ALTER TABLE `kriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `opsi_kriteria`
+--
+ALTER TABLE `opsi_kriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT untuk tabel `penilaian`
+--
+ALTER TABLE `penilaian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `opsi_kriteria`
+--
+ALTER TABLE `opsi_kriteria`
+  ADD CONSTRAINT `opsi_kriteria_ibfk_1` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `penilaian`
+--
+ALTER TABLE `penilaian`
+  ADD CONSTRAINT `penilaian_ibfk_1` FOREIGN KEY (`id_alternatif`) REFERENCES `alternatif` (`id`),
+  ADD CONSTRAINT `penilaian_ibfk_2` FOREIGN KEY (`id_kriteria`) REFERENCES `kriteria` (`id`),
+  ADD CONSTRAINT `penilaian_ibfk_3` FOREIGN KEY (`id_opsi`) REFERENCES `opsi_kriteria` (`id`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-06-08 16:19:11
