@@ -15,7 +15,9 @@ class WPController extends Controller
         
         $totalBobot = $kriterias->sum('bobot');
         $normalizedWeights = $kriterias->mapWithKeys(function($kriteria) use ($totalBobot) {
-            return [$kriteria->id => $kriteria->bobot / $totalBobot];
+            // Jika tipe kriteria adalah 'cost', bobot diberi tanda negatif
+            $bobot = $kriteria->tipe === 'cost' ? -($kriteria->bobot) : $kriteria->bobot;
+            return [$kriteria->id => $bobot / $totalBobot];
         });
 
         // Step-by-step calculations
@@ -26,7 +28,9 @@ class WPController extends Controller
         foreach ($alternatifs as $alternatif) {
             $sValue = 1;
             foreach ($alternatif->penilaians as $penilaian) {
-                $sValue *= pow($penilaian->opsi->nilai, $normalizedWeights[$penilaian->id_kriteria]);
+                $weight = $normalizedWeights[$penilaian->id_kriteria];
+                $nilai = $penilaian->opsi->nilai;
+                $sValue *= pow($nilai, $weight);
             }
             $nilaiS[$alternatif->id] = $sValue;
             $totalNilaiS += $sValue;
