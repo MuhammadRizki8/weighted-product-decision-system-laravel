@@ -1,3 +1,44 @@
+Sistem Pendukung Keputusan dengan metode WP
+---------------------------------------------
+![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/d65d530b-0250-4db8-bb61-0d38e9c97cce)
+![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/60f403c4-f445-4d97-9f80-8b01918a90f9)
+![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/0e183627-eac7-4942-bca8-b1a6770cd803)
+
+Set up website
+-------------------------------------------
+- Clone repo & buka sourcee code
+  > git clone https://github.com/MuhammadRizki8/DSS-Qurban.git
+  > cd DSS-Qurban
+  > code .
+- Setup .env file
+  duplikat .env.example file lalu rename menjadi .env
+  jika ingin menggunakan sqlite, ubah kode berikut
+  ```
+    # DB_CONNECTION=mysql
+    # DB_HOST=127.0.0.1
+    # DB_PORT=3306
+    # DB_DATABASE=dss_qurban
+    # DB_USERNAME=root
+    # DB_PASSWORD=
+    
+    DB_CONNECTION=sqlite
+    # DB_HOST=localhost
+    # DB_PORT=3306
+    # DB_DATABASE=dss_qurban
+    # DB_USERNAME=root
+    # DB_PASSWORD=
+  ```
+- commands
+  ```
+  npm run dev
+  php artisan key:generate
+  php artisan migrate
+  php artisan db:seed
+  php artisan serve
+  ```
+
+--------------------------------------
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
