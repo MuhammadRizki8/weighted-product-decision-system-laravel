@@ -8,7 +8,9 @@ Set up website
 -------------------------------------------
 - Clone repo & buka sourcee code
   > git clone https://github.com/MuhammadRizki8/DSS-Qurban.git
+  > 
   > cd DSS-Qurban
+  > 
   > code .
 - Setup .env file
   duplikat .env.example file lalu rename menjadi .env
