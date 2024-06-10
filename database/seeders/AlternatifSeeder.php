@@ -17,6 +17,8 @@ class AlternatifSeeder extends Seeder
             ['kode_alternatif' => 'A1', 'nama_alternatif' => 'Hewan Kurban A'],
             ['kode_alternatif' => 'A2', 'nama_alternatif' => 'Hewan Kurban B'],
             ['kode_alternatif' => 'A3', 'nama_alternatif' => 'Hewan Kurban C'],
+            ['kode_alternatif' => 'A4', 'nama_alternatif' => 'Hewan Kurban D'],
+            ['kode_alternatif' => 'A5', 'nama_alternatif' => 'Hewan Kurban E'],
         ]);
     }
     

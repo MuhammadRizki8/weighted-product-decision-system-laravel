@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <form action="{{ route('alternatifs.update', $alternatif->id) }}" method="POST">
+    <form action="{{ route('alternatifs.update', $alternatif->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -33,6 +33,15 @@
                 <div class="form-group">
                     <strong>Nama Alternatif:</strong>
                     <input type="text" name="nama_alternatif" value="{{ $alternatif->nama_alternatif }}" class="form-control" placeholder="Nama Alternatif">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <strong>Foto Alternatif:</strong>
+                    <input type="file" name="foto" class="form-control">
+                    @if ($alternatif->foto)
+                        <img src="{{ asset('storage/' . $alternatif->foto) }}" alt="{{ $alternatif->nama_alternatif }}" class="img-thumbnail mt-2" style="max-width: 200px;">
+                    @endif
                 </div>
             </div>
             <div class="col-md-12">
