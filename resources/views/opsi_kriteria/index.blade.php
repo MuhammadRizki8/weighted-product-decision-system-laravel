@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-2">
     <div class="row">
         <div class="col-lg-12 mb-3">
             <h2>Opsi Kriteria for {{ $kriteria->nama_kriteria }}</h2>
             <a class="btn btn-success" href="{{ route('opsi_kriterias.create', $kriteria->id) }}">Create New Opsi</a>
-            <a class="btn btn-secondary" href="{{ route('kriterias.index') }}">Back to Kriteria List</a>
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -37,5 +36,10 @@
         </tr>
         @endforeach
     </table>
+    <div class="row">
+        <div class="col-lg-12 mb-3">
+            <a class="btn btn-secondary" href="{{ route('kriterias.index') }}">Back to Kriteria List</a>
+        </div>
+    </div>
 </div>
 @endsection

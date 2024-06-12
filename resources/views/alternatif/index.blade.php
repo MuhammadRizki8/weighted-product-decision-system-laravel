@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <h2>Alternatif List</h2>
-            <a class="btn btn-success" href="{{ route('alternatifs.create') }}">Create New Alternatif</a>
+            <h2>Alternative List</h2>
+            <a class="btn btn-success" href="{{ route('alternatifs.create') }}">Create New Alternative</a>
         </div>
     </div>
     @if ($message = Session::get('success'))

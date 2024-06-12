@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="card">
+    <div class="card mt-3">
         <div class="card-header">
             Detail Alternatif
         </div>
@@ -28,7 +28,7 @@
                 </tbody>
             </table>
             <!-- Tambahkan informasi lainnya yang Anda ingin tampilkan -->
-            <a href="{{ route('alternatifs.index') }}" class="btn btn-primary mt-3">Back</a>
+            <a href="{{ route('alternatifs.index') }}" class="btn btn-secondary mt-3">Back</a>
             <a href="{{ route('alternatifs.edit_penilaian', $alternatif->id) }}" class="btn btn-primary mt-3">Edit Penilaian Kriteria</a>
         </div>
     </div>

@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 mb-3">
-            <h2>Kriteria List</h2>
-            <a class="btn btn-success" href="{{ route('kriterias.create') }}">Create New Kriteria</a>
+            <h2>Criteria List</h2>
+            <a class="btn btn-success" href="{{ route('kriterias.create') }}">Create New Criteria</a>
         </div>
     </div>
     @if ($message = Session::get('success'))

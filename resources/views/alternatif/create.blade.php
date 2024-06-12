@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create New Alternatif')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -39,7 +41,7 @@
                         <select name="penilaian[{{ $kriteria->id }}][id_opsi]" class="form-control" required>
                             <option value="">-</option> <!-- Nilai default -->
                             @foreach ($kriteria->opsiKriterias as $opsi)
-                                <option value="{{ $opsi->id }}">{{ $opsi->opsi }}</option>
+                                <option value="{{ $opsi->id }}">{{ $opsi->opsi }} (Nilai: {{ $opsi->nilai }})</option>
                             @endforeach
                         </select>
                         <input type="hidden" name="penilaian[{{ $kriteria->id }}][id_kriteria]" value="{{ $kriteria->id }}">
@@ -47,9 +49,10 @@
                 </div>
             @endforeach
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-lg-12">
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{{ route('alternatifs.index') }}" class="btn btn-secondary ml-2">Back</a>
             </div>
         </div>
     </form>

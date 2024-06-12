@@ -1,8 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel CRUD</title>
+    <title>@yield('title', 'Laravel CRUD')</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #e9e9e9;
+            color: #000000;
+            padding: 5px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-text {
+            margin: 0;
+        }
+    </style>
+    @yield('styles')
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -13,16 +37,13 @@
                 <a class="nav-link" href="{{ url('/') }}">Home</a>
             </li>
             <li class="nav-item {{ request()->is('alternatifs*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('alternatifs.index') }}">Alternatif</a>
+                <a class="nav-link" href="{{ route('alternatifs.index') }}">Alternative</a>
             </li>
             <li class="nav-item {{ request()->is('kriterias*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('kriterias.index') }}">Kriteria</a>
+                <a class="nav-link" href="{{ route('kriterias.index') }}">Criteria</a>
             </li>
-            {{-- <li class="nav-item {{ request()->is('penilaians*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('penilaians.index') }}">Penilaian</a>
-            </li> --}}
             <li class="nav-item {{ request()->is('wp*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('wp.index') }}">Perhitungan WP</a>
+                <a class="nav-link" href="{{ route('wp.index') }}">Rankings</a>
             </li>
         </ul>
     </div>
@@ -30,5 +51,8 @@
 <div class="container">
     @yield('content')
 </div>
+<footer>
+    <p class="footer-text">&copy; 2024 DSS Qurban. All rights reserved.</p>
+</footer>
 </body>
 </html>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-2">
     <div class="row">
         <div class="col-lg-12">
             <h2>Add New Kriteria</h2>
@@ -37,7 +37,8 @@
                 <option value="cost">Cost</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{ route('kriterias.index') }}" class="btn btn-secondary ml-2">Back</a>
     </form>    
 </div>
 @endsection

@@ -38,7 +38,8 @@
                 <option value="cost" {{ $kriteria->tipe == 'cost' ? 'selected' : '' }}>Cost</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-success">Update</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ route('kriterias.index') }}" class="btn btn-secondary ml-2">Back</a>
     </form>
 </div>
 @endsection
