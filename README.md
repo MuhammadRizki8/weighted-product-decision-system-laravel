@@ -9,6 +9,10 @@ Sistem Pendukung Keputusan dengan metode WP
     <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/0ca5d3ea-e2e4-40d7-975a-e6bd5d34b62b" alt="image3" width="45%"/>
     <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/3fe24daf-b1dc-4cbf-8dfb-8f80476b4be3" alt="image4" width="45%"/>
 </p>
+<p align="center">
+    <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/8c08302b-6c48-4d7b-8cbb-77b5244125ee" alt="image3" width="45%"/>
+    <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/120f3c83-2051-4040-ade5-ee018a832153" alt="image4" width="45%"/>
+</p>
 
 Set up website
 -------------------------------------------
