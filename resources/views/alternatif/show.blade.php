@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card mt-3 my-3">
         <div class="card-header">
-            Detail Alternatif
+            <h5 class="text-dark">Alternative Detail</h5>
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ $alternatif->nama_alternatif }}</h5>
