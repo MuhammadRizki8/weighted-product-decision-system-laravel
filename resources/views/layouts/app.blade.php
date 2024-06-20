@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@yield('title', 'Laravel CRUD')</title>
+    <title>@yield('title', 'DSS Qurban')</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
         body {
             display: flex;
@@ -24,6 +26,48 @@
 
         .footer-text {
             margin: 0;
+        }
+        /* ------------ */
+        .ranking-row {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+
+        .ranking-row td {
+            font-weight: bold;
+            color: #343a40; /* Dark gray text */
+        }
+
+        .ranking-row td:first-child {
+            font-size: 1.2em;
+            background-color: #e9ecef; /* Slightly darker gray for ranking */
+        }
+
+        .card-header {
+            background-color: #f1f1f1; /* Dark gray background */
+            color: white; /* White text */
+        }
+
+        .card-body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+
+        .btn-link {
+            color: #343a40; /* Dark gray text for button links */
+        }
+
+        .btn-link:hover {
+            color: #495057; /* Slightly lighter gray on hover */
+        }
+        .btn-link:hover {
+            color: #495057; /* Slightly lighter gray on hover */
+        }
+
+        .btn-link .fas {
+            transition: transform 0.3s ease; /* Smooth transition for rotation */
+        }
+
+        .btn-link.collapsed .fas {
+            transform: rotate(180deg); /* Rotate arrow when collapsed */
         }
     </style>
     @yield('styles')
@@ -54,5 +98,9 @@
 <footer>
     <p class="footer-text">&copy; 2024 DSS Qurban. All rights reserved.</p>
 </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

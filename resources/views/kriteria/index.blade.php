@@ -13,15 +13,17 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    <table class="table table-bordered">
-        <tr>
-            <th>ID</th>
-            <th>Kode Kriteria</th>
-            <th>Nama Kriteria</th>
-            <th>Bobot</th>
-            <th>Tipe</th>
-            <th width="380px">Action</th>
-        </tr>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Kode Kriteria</th>
+                <th>Nama Kriteria</th>
+                <th>Bobot</th>
+                <th>Tipe</th>
+                <th width="380px">Action</th>
+            </tr>
+        </thead>
         @foreach ($kriterias as $kriteria)
         <tr>
             <td>{{ $kriteria->id }}</td>
