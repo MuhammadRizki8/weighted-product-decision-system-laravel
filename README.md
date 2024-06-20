@@ -1,10 +1,14 @@
 Sistem Pendukung Keputusan dengan metode WP
 ---------------------------------------------
-![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/67cd9202-610c-4ce2-92c0-0c9d82674ade)
-![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/894f52a1-8da0-453d-b6dc-87a89b63b44e)
-![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/0ca5d3ea-e2e4-40d7-975a-e6bd5d34b62b)
-![image](https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/3fe24daf-b1dc-4cbf-8dfb-8f80476b4be3)
 
+<p align="center">
+    <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/67cd9202-610c-4ce2-92c0-0c9d82674ade" alt="image1" width="45%"/>
+    <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/894f52a1-8da0-453d-b6dc-87a89b63b44e" alt="image2" width="45%"/>
+</p>
+<p align="center">
+    <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/0ca5d3ea-e2e4-40d7-975a-e6bd5d34b62b" alt="image3" width="45%"/>
+    <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/3fe24daf-b1dc-4cbf-8dfb-8f80476b4be3" alt="image4" width="45%"/>
+</p>
 
 Set up website
 -------------------------------------------
