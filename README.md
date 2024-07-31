@@ -1,4 +1,4 @@
-Sistem Pendukung Keputusan dengan metode WP
+Sistem Pendukung Keputusan dengan metode Weighted Product | Decision Support System with Weighted Product method
 ---------------------------------------------
 
 <p align="center">
@@ -13,6 +13,26 @@ Sistem Pendukung Keputusan dengan metode WP
     <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/8c08302b-6c48-4d7b-8cbb-77b5244125ee" alt="image3" width="45%"/>
     <img src="https://github.com/MuhammadRizki8/DSS-Qurban/assets/100481579/120f3c83-2051-4040-ade5-ee018a832153" alt="image4" width="45%"/>
 </p>
+
+## Deskripsi Proyek
+Proyek ini bertujuan untuk membuat sebuah aplikasi web yang membantu dalam pengambilan keputusan dengan menggunakan metode Weighted Product. Metode ini digunakan untuk mengevaluasi alternatif berdasarkan beberapa kriteria yang memiliki bobot masing-masing.
+
+## Fitur Utama
+1. **Pengelolaan Alternatif**
+   - Tambah, edit, dan hapus alternatif.
+2. **Pengelolaan Kriteria**
+   - Tambah, edit, dan hapus kriteria beserta bobotnya.
+3. **Penilaian Alternatif**
+   - Form untuk memberikan penilaian setiap alternatif terhadap kriteria.
+4. **Hasil Keputusan**
+   - Menampilkan hasil keputusan dalam bentuk tabel.
+
+## Instalasi
+### Prasyarat
+- PHP >= 7.3
+- Composer
+- MySQL atau SQLite
+- Node.js & NPM (untuk frontend)
 
 Set up website
 -------------------------------------------
