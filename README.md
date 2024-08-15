@@ -17,6 +17,10 @@ Sistem Pendukung Keputusan dengan metode Weighted Product | Decision Support Sys
 ## Deskripsi Proyek
 Proyek ini bertujuan untuk membuat sebuah aplikasi web yang membantu dalam pengambilan keputusan dengan menggunakan metode Weighted Product. Metode ini digunakan untuk mengevaluasi alternatif berdasarkan beberapa kriteria yang memiliki bobot masing-masing.
 
+## Link Slide & Jurnal
+> https://drive.google.com/file/d/1ermjAqdcBycbcCIW21tDnyIO9J11ntkN/view?usp=sharing
+> https://drive.google.com/file/d/1EjqrAtHxt_yRqTcSG2OKo6BXWT3J_5V_/view?usp=sharing
+
 ## Fitur Utama
 1. **Pengelolaan Alternatif**
    - Tambah, edit, dan hapus alternatif.
