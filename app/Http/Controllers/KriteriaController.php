@@ -6,10 +6,28 @@ use App\Models\Kriteria;
 
 class KriteriaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kriterias = Kriteria::all();
-        return view('kriteria.index', compact('kriterias'));
+        $search = $request->get('q');
+        $sort = $request->get('sort', 'nama_kriteria');
+        $dir = $request->get('dir', 'asc');
+
+        $query = Kriteria::query();
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_kriteria', 'like', "%{$search}%")
+                  ->orWhere('kode_kriteria', 'like', "%{$search}%");
+            });
+        }
+        $allowedSorts = ['nama_kriteria', 'kode_kriteria', 'bobot', 'tipe', 'id'];
+        if (!in_array($sort, $allowedSorts, true)) {
+            $sort = 'nama_kriteria';
+        }
+        $dir = strtolower($dir) === 'desc' ? 'desc' : 'asc';
+
+        $kriterias = $query->orderBy($sort, $dir)->paginate(10)->withQueryString();
+
+        return view('kriteria.index', compact('kriterias', 'search', 'sort', 'dir'));
     }
 
     public function create()
@@ -19,15 +37,15 @@ class KriteriaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_kriteria' => 'required',
+        $validated = $request->validate([
+            'kode_kriteria' => 'required|unique:kriterias,kode_kriteria',
             'nama_kriteria' => 'required',
-            'bobot' => 'required|numeric',
-            'tipe' => 'required',
+            'bobot' => 'required|numeric|min:0.000001',
+            'tipe' => 'required|in:benefit,cost',
         ]);
-    
-        Kriteria::create($request->all());
-    
+
+        Kriteria::create($validated);
+
         return redirect()->route('kriterias.index')
                          ->with('success', 'Kriteria created successfully.');
     }
@@ -39,14 +57,14 @@ class KriteriaController extends Controller
 
     public function update(Request $request, Kriteria $kriteria)
     {
-        $request->validate([
-            'kode_kriteria' => 'required',
+        $validated = $request->validate([
+            'kode_kriteria' => 'required|unique:kriterias,kode_kriteria,' . $kriteria->id,
             'nama_kriteria' => 'required',
-            'bobot' => 'required|numeric',
-            'tipe' => 'required',
+            'bobot' => 'required|numeric|min:0.000001',
+            'tipe' => 'required|in:benefit,cost',
         ]);
 
-        $kriteria->update($request->all());
+        $kriteria->update($validated);
 
         return redirect()->route('kriterias.index')
                          ->with('success', 'Kriteria updated successfully.');

@@ -169,3 +169,85 @@
     </div>
 </div>
 @endsection
+
+@section('styles')
+<style>
+    /* Increase chart responsiveness */
+    #rankingChart {
+        width: 100% !important;
+    }
+    .thead-dark th { color: #fff; }
+    table caption { caption-side: top; }
+    .ranking-row td { vertical-align: middle; }
+    .card .table { margin-bottom: 0; }
+    .table td, .table th { text-align: center; }
+    .table th[scope="col"] { text-transform: uppercase; font-size: 0.85rem; }
+    .table caption { font-weight: 600; }
+    .btn-link { text-decoration: none; }
+    .btn-link:hover { text-decoration: underline; }
+    .accordion .card-header { cursor: pointer; }
+    .accordion .card-header .btn-link { width: 100%; }
+    .accordion .card-header .fas { transition: transform 0.3s ease; }
+    .accordion .card-header .collapsed .fas { transform: rotate(180deg); }
+    @media (max-width: 576px) {
+        .table { font-size: 0.9rem; }
+    }
+}</style>
+@endsection
+
+@section('content')
+@parent
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    (function() {
+        const labels = [
+            @foreach ($hasil as $data)
+                @php $name = addslashes($data['alternatif']->nama_alternatif); @endphp
+                "{{ $name }}",
+            @endforeach
+        ];
+        const values = [
+            @foreach ($hasil as $data)
+                {{ round($data['nilaiV'], 6) }},
+            @endforeach
+        ];
+        const ctx = document.getElementById('rankingChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.8)'); // indigo
+        gradient.addColorStop(1, 'rgba(99, 102, 241, 0.2)');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nilai V',
+                    data: values,
+                    backgroundColor: gradient,
+                    borderColor: 'rgba(99, 102, 241, 1)',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const v = context.raw;
+                                return 'Nilai V: ' + Number(v).toFixed(4);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'Alternatif' } },
+                    y: { title: { display: true, text: 'Nilai V' }, beginAtZero: true }
+                }
+            }
+        });
+    })();
+</script>
+@endsection

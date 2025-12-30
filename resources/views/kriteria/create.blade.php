@@ -28,7 +28,7 @@
         </div>
         <div class="form-group">
             <label for="bobot">Bobot:</label>
-            <input type="number" step="1" class="form-control" name="bobot" required>
+            <input type="number" step="0.01" class="form-control" name="bobot" required>
         </div>
         <div class="form-group">
             <label for="tipe">Tipe:</label>

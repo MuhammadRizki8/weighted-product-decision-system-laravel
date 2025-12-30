@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 mb-3">
             <h2>Penilaian List</h2>
-            <a class="btn btn-success" href="{{ route('penilaians.create') }}">Create New Penilaian</a>
+            <a class="btn btn-success" href="{{ route('alternatifs.index') }}">Manage Penilaian by Alternative</a>
         </div>
     </div>
     @if ($message = Session::get('success'))
@@ -37,12 +37,7 @@
                         </td>
                     @endforeach
                     <td>
-                        <form action="{{ route('penilaians.destroy', $alternatif->id) }}" method="POST">
-                            <a class="btn btn-primary" href="{{ route('penilaians.edit', $alternatif->id) }}">Edit</a>
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <a class="btn btn-primary" href="{{ route('alternatifs.edit_penilaian', $alternatif->id) }}">Edit Penilaian</a>
                     </td>
                 </tr>
             @endforeach

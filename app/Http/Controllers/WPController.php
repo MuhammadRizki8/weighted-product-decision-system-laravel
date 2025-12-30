@@ -14,10 +14,22 @@ class WPController extends Controller
         $kriterias = Kriteria::all();
         
         $totalBobot = $kriterias->sum('bobot');
-        $normalizedWeights = $kriterias->mapWithKeys(function($kriteria) use ($totalBobot) {
-            // Jika tipe kriteria adalah 'cost', bobot diberi tanda negatif
-            $bobot = $kriteria->tipe === 'cost' ? -($kriteria->bobot) : $kriteria->bobot;
-            return [$kriteria->id => $bobot / $totalBobot];
+        if ($totalBobot <= 0) {
+            return view('wp.index', [
+                'hasil' => collect(),
+                'kriterias' => $kriterias,
+                'nilaiS' => [],
+                'nilaiV' => [],
+                'totalNilaiS' => 0,
+                'normalizedWeights' => [],
+                'alternatifs' => $alternatifs,
+            ])->with('error', 'Total bobot tidak valid. Pastikan bobot setiap kriteria bernilai positif.');
+        }
+
+        // Normalisasi bobot secara positif; terapkan eksponen negatif saat perhitungan untuk tipe cost
+        $normalizedWeights = $kriterias->mapWithKeys(function ($kriteria) use ($totalBobot) {
+            $w = $kriteria->bobot / $totalBobot; // selalu positif
+            return [$kriteria->id => $w];
         });
 
         // Step-by-step calculations
@@ -28,16 +40,24 @@ class WPController extends Controller
         foreach ($alternatifs as $alternatif) {
             $sValue = 1;
             foreach ($alternatif->penilaians as $penilaian) {
-                $weight = $normalizedWeights[$penilaian->id_kriteria];
-                $nilai = $penilaian->opsi->nilai;
-                $sValue *= pow($nilai, $weight);
+                if (!isset($normalizedWeights[$penilaian->id_kriteria])) {
+                    continue; // kriteria tidak terdaftar
+                }
+                $base = $penilaian->opsi->nilai;
+                // WP mensyaratkan nilai basis > 0. Jika 0 atau null, gunakan epsilon kecil untuk menghindari error
+                if ($base === null || $base <= 0) {
+                    $base = 1e-9;
+                }
+                $w = $normalizedWeights[$penilaian->id_kriteria];
+                $exp = $penilaian->kriteria->tipe === 'cost' ? -$w : $w;
+                $sValue *= pow($base, $exp);
             }
             $nilaiS[$alternatif->id] = $sValue;
             $totalNilaiS += $sValue;
         }
 
         foreach ($nilaiS as $id => $sValue) {
-            $nilaiV[$id] = $sValue / $totalNilaiS;
+            $nilaiV[$id] = $totalNilaiS > 0 ? ($sValue / $totalNilaiS) : 0;
         }
 
         $hasil = $alternatifs->map(function($alternatif) use ($nilaiS, $nilaiV) {

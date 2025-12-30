@@ -8,7 +8,10 @@
         <h1 class="display-4">Welcome!</h1>
         <p class="lead">This decision support system website using the weighted product method will help you choose qurban animals.</p>
         <hr class="my-4">
-        <img src="{{ asset('qurban.png') }}" class="img-fluid" alt="Qurban Image">
+        @php
+            $qurbanImg = file_exists(public_path('qurban.png')) ? asset('qurban.png') : 'https://via.placeholder.com/800x400?text=Qurban+Image';
+        @endphp
+        <img src="{{ $qurbanImg }}" class="img-fluid" alt="Qurban Image">
         <p class="mt-4">Let's choose your qurban animal. With the best qurban animals, every charity becomes more meaningful.</p>
         <a class="btn btn-primary btn-lg" href="{{ route('wp.index') }}" role="button">View Ranking</a>
     </div>

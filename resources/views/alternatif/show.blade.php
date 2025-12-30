@@ -9,7 +9,17 @@
         <div class="card-body">
             <h5 class="card-title">{{ $alternatif->nama_alternatif }}</h5>
             <p class="card-text">Kode: {{ $alternatif->kode_alternatif }}</p>
-            <img src="{{ asset('storage/' . $alternatif->foto) }}" alt="{{ $alternatif->nama_alternatif }}" class="img-fluid" style="max-width: 300px;">
+            @php
+                $fotoSrc = null;
+                if (!empty($alternatif->foto_blob)) {
+                    $fotoSrc = 'data:image/jpeg;base64,' . base64_encode($alternatif->foto_blob);
+                } elseif (!empty($alternatif->foto) && \Illuminate\Support\Facades\Storage::disk('public')->exists($alternatif->foto)) {
+                    $fotoSrc = asset('storage/' . $alternatif->foto);
+                } else {
+                    $fotoSrc = asset('images/default-photo.svg');
+                }
+            @endphp
+            <img src="{{ $fotoSrc }}" alt="{{ $alternatif->nama_alternatif }}" class="img-fluid" style="max-width: 300px;" loading="lazy" width="300" height="200">
             <h6 class="mt-4">Nilai Kriteria:</h6>
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
